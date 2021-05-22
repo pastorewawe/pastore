@@ -58,8 +58,8 @@ end
 ]])
 Devpastore_Info_Sudo:close()
 ------------------------------------------------------------------------------------------------------------
-local tk_File_pastore = io.open("pastore", 'w')
-tk_File_pastore:write([[
+local Run_File_pastore = io.open("pastore", 'w')
+Run_File_pastore:write([[
 #!/usr/bin/env bash
 cd $HOME/pastore
 token="]]..redis:get(Server_pastore.."Token_Devpastore")..[["
@@ -68,10 +68,10 @@ rm -fr ../.telegram-cli
 ./tg -s ./pastore.lua -p PROFILE --bot=$token
 done
 ]])
-tk_File_pastore:close()
+Run_File_pastore:close()
 ------------------------------------------------------------------------------------------------------------
-local tk_SM = io.open("tk", 'w')
-tk_SM:write([[
+local Run_SM = io.open("Run", 'w')
+Run_SM:write([[
 #!/usr/bin/env bash
 cd $HOME/pastore
 while(true) do
@@ -80,12 +80,12 @@ screen -S pastore -X kill
 screen -S pastore ./pastore
 done
 ]])
-tk_SM:close()
+Run_SM:close()
 io.popen("mkdir Files")
 os.execute('chmod +x tg')
 os.execute('chmod +x pastore')
-os.execute('chmod +x tk')
-os.execute('./tk')
+os.execute('chmod +x Run')
+os.execute('./Run')
 Status = true
 else   
 f:close()  
@@ -1850,7 +1850,7 @@ end
 redis:set(bot_id.."Status:Set:Aks"..msg.chat_id_,true)
 end 
 ------------------------------------------------------------------------------------------------------------
-if redis:get(bot_id.."Status:GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then  
+if redis:get(bot_id.."Status:GAME:TkMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then  
 if text and text:match("^(%d+)$") then
 local NUM = text:match("^(%d+)$")
 if tonumber(NUM) > 20 then
@@ -1859,14 +1859,14 @@ return false  end
 local GETNUM = redis:get(bot_id.."Status:GAMES:NUM"..msg.chat_id_)
 if tonumber(NUM) == tonumber(GETNUM) then
 redis:del(bot_id.."Status:SADD:NUM"..msg.chat_id_..msg.sender_user_id_)
-redis:del(bot_id.."Status:GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
+redis:del(bot_id.."Status:GAME:TkMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
 redis:incrby(bot_id.."Num:Add:Games"..msg.chat_id_..msg.sender_user_id_,5)  
 send(msg.chat_id_, msg.id_,"⌔∮مبروك فزت ويانه وخمنت الرقم الصحيح\n⌔∮تم اضافة { 5 } من النقاط \n")
 elseif tonumber(NUM) ~= tonumber(GETNUM) then
 redis:incrby(bot_id.."Status:SADD:NUM"..msg.chat_id_..msg.sender_user_id_,1)
 if tonumber(redis:get(bot_id.."Status:SADD:NUM"..msg.chat_id_..msg.sender_user_id_)) >= 3 then
 redis:del(bot_id.."Status:SADD:NUM"..msg.chat_id_..msg.sender_user_id_)
-redis:del(bot_id.."Status:GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
+redis:del(bot_id.."Status:GAME:TkMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
 send(msg.chat_id_, msg.id_,"⌔∮اوبس لقد خسرت في اللعبه \n⌔∮حظآ اوفر في المره القادمه \n⌔∮كان الرقم الذي تم تخمينه { "..GETNUM.." }")
 else
 send(msg.chat_id_, msg.id_,"⌔∮اوبس تخمينك غلط \n⌔∮ارسل رقم تخمنه مره اخرى ")
@@ -6935,7 +6935,7 @@ if redis:get(bot_id.."Status:Lock:Game:Group"..msg.chat_id_) then
 Num = math.random(1,20)
 redis:set(bot_id.."Status:GAMES:NUM"..msg.chat_id_,Num) 
 send(msg.chat_id_, msg.id_,"\n⌔∮اهلا بك عزيزي في لعبة التخمين :\nٴ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n".."⌔∮ملاحظه لديك { 3 } محاولات فقط فكر قبل ارسال تخمينك \n\n".."⌔∮سيتم تخمين عدد ما بين ال {1 و 20} اذا تعتقد انك تستطيع الفوز جرب واللعب الان ؟ ")
-redis:setex(bot_id.."Status:GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 100, true)  
+redis:setex(bot_id.."Status:GAME:TkMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 100, true)  
 return false  
 end
 elseif text == "محيبس" or text == "بات" then
@@ -7049,7 +7049,7 @@ send(msg.chat_id_, msg.id_,[[
 
 𓂅 . 𝗣𝗔𝗦𝗧𝗢𝗥𝗘 𝗧𝗘𝗔𝗠 
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-𓂅 . [Source Pastore](https://t.me/TKSLX)
+𓂅 . [Source Pastore](https://t.me/TkSLX)
 
 𓂅 . [Source Info](https://t.me/TEF0O)
 
@@ -7076,7 +7076,7 @@ send(msg.chat_id_, msg.id_,[[*
 ⌔∮ارسل { م4 } ← اوامر المنشئين
 ⌔∮ارسل { م5 } ← اوامر مطورين البوت
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-⌔∮قناة البوت ←* @TKSLX
+⌔∮قناة البوت ←* @TkSLX
 ]]) 
 elseif text == 'م1' and Admin(msg) then
 if AddChannelDEV(msg.sender_user_id_) == false then
@@ -7121,7 +7121,7 @@ send(msg.chat_id_, msg.id_,[[*
 ⌔∮الجهات
 ⌔∮الاشعارات
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-⌔∮قناة البوت ←* @TKSLX
+⌔∮قناة البوت ←* @TkSLX
 ]]) 
 elseif text == 'م2' and Admin(msg) then
 if AddChannelDEV(msg.sender_user_id_) == false then
@@ -7169,7 +7169,7 @@ send(msg.chat_id_, msg.id_,[[*
 ⌔∮المطرودين ، البوتات ، الصوره
 ⌔∮الصلاحيات ، الرابط
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-⌔∮قناة البوت ←* @TKSLX
+⌔∮قناة البوت ←* @TkSLX
 ]]) 
 elseif text == 'م3' and Owner(msg) then
 if AddChannelDEV(msg.sender_user_id_) == false then
@@ -7209,7 +7209,7 @@ send(msg.chat_id_, msg.id_,[[*
 ⌔∮اضف ، حذف ← { رد }
 ⌔∮تنظيف ← { عدد }
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-⌔∮قناة البوت ←* @TKSLX
+⌔∮قناة البوت ←* @TkSLX
 ]]) 
 elseif text == 'م4' and Constructor(msg) then
 if AddChannelDEV(msg.sender_user_id_) == false then
@@ -7236,7 +7236,7 @@ send(msg.chat_id_, msg.id_,[[*
 ⌔∮اضف ، حذف ← { امر }
 ⌔∮الاوامر المضافه ، مسح الاوامر المضافه
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-⌔∮قناة البوت ←* @TKSLX
+⌔∮قناة البوت ←* @TkSLX
 ]]) 
 elseif text == 'م5' and DeveloperBot(msg)  then
 if AddChannelDEV(msg.sender_user_id_) == false then
@@ -7278,7 +7278,7 @@ send(msg.chat_id_, msg.id_,[[*
 ⌔∮اذاعه ، اذاعه بالتوجيه ، اذاعه بالتثبيت
 ⌔∮اذاعه خاص ، اذاعه خاص بالتوجيه 
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-⌔∮قناة البوت ←* @TKSLX
+⌔∮قناة البوت ←* @TkSLX
 ]]) 
 elseif text == 'الالعاب' then
 if AddChannelDEV(msg.sender_user_id_) == false then
