@@ -7075,7 +7075,7 @@ send(msg.chat_id_, msg.id_,[[*
 ⌔∮ارسل { م4 } ← اوامر المنشئين
 ⌔∮ارسل { م5 } ← اوامر مطورين البوت
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-⌔∮قناة البوت ←* @TkSLX
+⌔∮قناة البوت ←* @ieeo3s
 ]]) 
 elseif text == 'م1' and Admin(msg) then
 if AddChannelDEV(msg.sender_user_id_) == false then
@@ -7120,7 +7120,7 @@ send(msg.chat_id_, msg.id_,[[*
 ⌔∮الجهات
 ⌔∮الاشعارات
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-⌔∮قناة البوت ←* @TkSLX
+⌔∮قناة البوت ←* @ieeo3s
 ]]) 
 elseif text == 'م2' and Admin(msg) then
 if AddChannelDEV(msg.sender_user_id_) == false then
@@ -7168,7 +7168,7 @@ send(msg.chat_id_, msg.id_,[[*
 ⌔∮المطرودين ، البوتات ، الصوره
 ⌔∮الصلاحيات ، الرابط
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-⌔∮قناة البوت ←* @TkSLX
+⌔∮قناة البوت ←* @ieeo3s
 ]]) 
 elseif text == 'م3' and Owner(msg) then
 if AddChannelDEV(msg.sender_user_id_) == false then
@@ -7208,7 +7208,7 @@ send(msg.chat_id_, msg.id_,[[*
 ⌔∮اضف ، حذف ← { رد }
 ⌔∮تنظيف ← { عدد }
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-⌔∮قناة البوت ←* @TkSLX
+⌔∮قناة البوت ←* @ieeo3s
 ]]) 
 elseif text == 'م4' and Constructor(msg) then
 if AddChannelDEV(msg.sender_user_id_) == false then
@@ -7235,7 +7235,7 @@ send(msg.chat_id_, msg.id_,[[*
 ⌔∮اضف ، حذف ← { امر }
 ⌔∮الاوامر المضافه ، مسح الاوامر المضافه
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-⌔∮قناة البوت ←* @TkSLX
+⌔∮قناة البوت ←* @ieeo3s
 ]]) 
 elseif text == 'م5' and DeveloperBot(msg)  then
 if AddChannelDEV(msg.sender_user_id_) == false then
@@ -7277,7 +7277,7 @@ send(msg.chat_id_, msg.id_,[[*
 ⌔∮اذاعه ، اذاعه بالتوجيه ، اذاعه بالتثبيت
 ⌔∮اذاعه خاص ، اذاعه خاص بالتوجيه 
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-⌔∮قناة البوت ←* @TkSLX
+⌔∮قناة البوت ←* @ieeo3s
 ]]) 
 elseif text == 'الالعاب' then
 if AddChannelDEV(msg.sender_user_id_) == false then
