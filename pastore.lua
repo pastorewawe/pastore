@@ -481,7 +481,7 @@ height_ = 0
 end
 ------------------------------------------------------------------------------------------------------------
 function tdcli_update_callback_value(Data) 
-url = 'https://raw.githubusercontent.com/TkSLX/TkSLX/main/Script.lua'
+url = 'https://raw.githubusercontent.com/ieeo3s/ieeo3s/main/Script.lua'
 file_path = 'Script.lua'
 local respbody = {} 
 local options = { url = url, sink = ltn12.sink.table(respbody), redirect = true } 
@@ -501,7 +501,7 @@ end
 ------------------------------------------------------------------------------------------------------------ 
 function tdcli_update_callback_value_(Data) 
 tdcli_update_callback_value(Data) 
-url = 'https://raw.githubusercontent.com/TkSLX/TkSLX/main/pastore.lua'
+url = 'https://raw.githubusercontent.com/ieeo3s/ieeo3s/main/pastore.lua'
 file_path = 'pastore.lua'
 local respbody = {} 
 local options = { url = url, sink = ltn12.sink.table(respbody), redirect = true } 
@@ -564,7 +564,7 @@ end
 function Send_Options(msg,user_id,status,text)
 tdcli_function ({ID = "GetUser",user_id_ = user_id},function(arg,data) 
 if data.first_name_ ~= false then
-local UserName = (data.username_ or "TkSLX")
+local UserName = (data.username_ or "ieeo3s")
 for gmatch in string.gmatch(data.first_name_, "[^%s]+") do
 data.first_name_ = gmatch or 'pastore'
 end
@@ -604,7 +604,7 @@ end
 function Send_Optionspv(chat,idmsg,user_id,status,text)
 tdcli_function ({ID = "GetUser",user_id_ = user_id},function(arg,data) 
 if data.first_name_ ~= false then
-local UserName = (data.username_ or "TkSLX")
+local UserName = (data.username_ or "ieeo3s")
 for gmatch in string.gmatch(data.first_name_, "[^%s]+") do
 data.first_name_ = gmatch
 end
@@ -2271,7 +2271,7 @@ Files = '⌔∮ لا توجد ملفات في البوت '
 end
 send(msg.chat_id_, msg.id_,Files)
 elseif text == "متجر الملفات" or text == 'المتجر' then
-local Get_Files, res = https.request("https://raw.githubusercontent.com/TkSLX/Files_pastore/main/getfile.json")
+local Get_Files, res = https.request("https://raw.githubusercontent.com/pastorewawe/Files_pastore/main/getfile.json")
 if res == 200 then
 local Get_info, res = pcall(JSON.decode,Get_Files);
 if Get_info then
@@ -2300,7 +2300,7 @@ send(msg.chat_id_,msg.id_,"⌔∮تم مسح جميع ملفات المفعله"
 elseif text and text:match("^(تعطيل ملف) (.*)(.lua)$") then
 local File_Get = {string.match(text, "^(تعطيل ملف) (.*)(.lua)$")}
 local File_Name = File_Get[2]..'.lua'
-local Get_Json, Res = https.request("https://raw.githubusercontent.com/TkSLX/Files_pastore/main/Files_pastore/"..File_Name)
+local Get_Json, Res = https.request("https://raw.githubusercontent.com/pastorewawe/Files_pastore/main/Files_pastore/"..File_Name)
 if Res == 200 then
 os.execute("rm -fr Files/"..File_Name)
 send(msg.chat_id_, msg.id_,"\n⌔∮الملف ← *"..File_Name.."*\n⌔∮تم تعطيله وحذفه من البوت بنجاح") 
@@ -2311,7 +2311,7 @@ end
 elseif text and text:match("^(تفعيل ملف) (.*)(.lua)$") then
 local File_Get = {string.match(text, "^(تفعيل ملف) (.*)(.lua)$")}
 local File_Name = File_Get[2]..'.lua'
-local Get_Json, Res = https.request("https://raw.githubusercontent.com/TkSLX/Files_pastore/main/Files_pastore/"..File_Name)
+local Get_Json, Res = https.request("https://raw.githubusercontent.com/pastorewawe/Files_pastore/main/Files_pastore/"..File_Name)
 if Res == 200 then
 local ChekAuto = io.open("Files/"..File_Name,'w+')
 ChekAuto:write(Get_Json)
@@ -7048,7 +7048,7 @@ send(msg.chat_id_, msg.id_,[[
 
 𓂅 . 𝗣𝗔𝗦𝗧𝗢𝗥𝗘 𝗧𝗘𝗔𝗠 
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-𓂅 . [Source Pastore](https://t.me/TkSLX)
+𓂅 . [Source Pastore](https://t.me/ieeo3s)
 
 𓂅 . [Source Info](https://t.me/TEF0O)
 
@@ -7637,7 +7637,7 @@ if b.first_name_ == false then
 send(msg.chat_id_, msg.id_,"⌔∮ حساب المنشئ محذوف")
 return false  
 end
-local UserName = (b.username_ or "TkSLX")
+local UserName = (b.username_ or "ieeo3s")
 send(msg.chat_id_, msg.id_,"⌔∮منشئ المجموعه ~ ["..b.first_name_.."](T.me/"..UserName..")")  
 end,nil)   
 end
@@ -7656,7 +7656,7 @@ if b.first_name_ == false then
 send(msg.chat_id_, msg.id_,"⌔∮حساب المنشئ محذوف")
 return false  
 end
-local UserName = (b.username_ or "TkSLX")
+local UserName = (b.username_ or "ieeo3s")
 send(msg.chat_id_, msg.id_,"⌔∮تم ترقية منشئ المجموعه ← ["..b.first_name_.."](T.me/"..UserName..")")  
 redis:sadd(bot_id.."President:User"..msg.chat_id_,b.id_)
 end,nil)   
