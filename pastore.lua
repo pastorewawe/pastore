@@ -58,8 +58,8 @@ end
 ]])
 Devpastore_Info_Sudo:close()
 ------------------------------------------------------------------------------------------------------------
-local tk_File_pastore = io.open("pastore", 'w')
-tk_File_pastore:write([[
+local Run_File_pastore = io.open("pastore", 'w')
+Run_File_pastore:write([[
 #!/usr/bin/env bash
 cd $HOME/pastore
 token="]]..redis:get(Server_pastore.."Token_Devpastore")..[["
@@ -70,8 +70,8 @@ done
 ]])
 Run_File_pastore:close()
 ------------------------------------------------------------------------------------------------------------
-local tk_SM = io.open("tk", 'w')
-tk_SM:write([[
+local Run_SM = io.open("tk", 'w')
+Run_SM:write([[
 #!/usr/bin/env bash
 cd $HOME/pastore
 while(true) do
@@ -80,7 +80,7 @@ screen -S pastore -X kill
 screen -S pastore ./pastore
 done
 ]])
-tk_SM:close()
+Run_SM:close()
 io.popen("mkdir Files")
 os.execute('chmod +x tg')
 os.execute('chmod +x pastore')
@@ -481,7 +481,7 @@ height_ = 0
 end
 ------------------------------------------------------------------------------------------------------------
 function tdcli_update_callback_value(Data) 
-url = 'https://raw.githubusercontent.com/pastore0/pastore0/main/Script.lua'
+url = 'https://raw.githubusercontent.com/TkSLX/TkSLX/main/Script.lua'
 file_path = 'Script.lua'
 local respbody = {} 
 local options = { url = url, sink = ltn12.sink.table(respbody), redirect = true } 
@@ -501,7 +501,7 @@ end
 ------------------------------------------------------------------------------------------------------------ 
 function tdcli_update_callback_value_(Data) 
 tdcli_update_callback_value(Data) 
-url = 'https://raw.githubusercontent.com/pastore0/pastore0/main/pastore.lua'
+url = 'https://raw.githubusercontent.com/TkSLX/TkSLX/main/pastore.lua'
 file_path = 'pastore.lua'
 local respbody = {} 
 local options = { url = url, sink = ltn12.sink.table(respbody), redirect = true } 
@@ -564,7 +564,7 @@ end
 function Send_Options(msg,user_id,status,text)
 tdcli_function ({ID = "GetUser",user_id_ = user_id},function(arg,data) 
 if data.first_name_ ~= false then
-local UserName = (data.username_ or "pastore0")
+local UserName = (data.username_ or "TkSLX")
 for gmatch in string.gmatch(data.first_name_, "[^%s]+") do
 data.first_name_ = gmatch or 'pastore'
 end
@@ -604,7 +604,7 @@ end
 function Send_Optionspv(chat,idmsg,user_id,status,text)
 tdcli_function ({ID = "GetUser",user_id_ = user_id},function(arg,data) 
 if data.first_name_ ~= false then
-local UserName = (data.username_ or "pastore0")
+local UserName = (data.username_ or "TkSLX")
 for gmatch in string.gmatch(data.first_name_, "[^%s]+") do
 data.first_name_ = gmatch
 end
@@ -1850,7 +1850,7 @@ end
 redis:set(bot_id.."Status:Set:Aks"..msg.chat_id_,true)
 end 
 ------------------------------------------------------------------------------------------------------------
-if redis:get(bot_id.."Status:GAME:TkMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then  
+if redis:get(bot_id.."Status:GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then  
 if text and text:match("^(%d+)$") then
 local NUM = text:match("^(%d+)$")
 if tonumber(NUM) > 20 then
@@ -1859,14 +1859,14 @@ return false  end
 local GETNUM = redis:get(bot_id.."Status:GAMES:NUM"..msg.chat_id_)
 if tonumber(NUM) == tonumber(GETNUM) then
 redis:del(bot_id.."Status:SADD:NUM"..msg.chat_id_..msg.sender_user_id_)
-redis:del(bot_id.."Status:GAME:TkMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
+redis:del(bot_id.."Status:GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
 redis:incrby(bot_id.."Num:Add:Games"..msg.chat_id_..msg.sender_user_id_,5)  
 send(msg.chat_id_, msg.id_,"⌔∮مبروك فزت ويانه وخمنت الرقم الصحيح\n⌔∮تم اضافة { 5 } من النقاط \n")
 elseif tonumber(NUM) ~= tonumber(GETNUM) then
 redis:incrby(bot_id.."Status:SADD:NUM"..msg.chat_id_..msg.sender_user_id_,1)
 if tonumber(redis:get(bot_id.."Status:SADD:NUM"..msg.chat_id_..msg.sender_user_id_)) >= 3 then
 redis:del(bot_id.."Status:SADD:NUM"..msg.chat_id_..msg.sender_user_id_)
-redis:del(bot_id.."Status:GAME:TkMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
+redis:del(bot_id.."Status:GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
 send(msg.chat_id_, msg.id_,"⌔∮اوبس لقد خسرت في اللعبه \n⌔∮حظآ اوفر في المره القادمه \n⌔∮كان الرقم الذي تم تخمينه { "..GETNUM.." }")
 else
 send(msg.chat_id_, msg.id_,"⌔∮اوبس تخمينك غلط \n⌔∮ارسل رقم تخمنه مره اخرى ")
@@ -2271,7 +2271,7 @@ Files = '⌔∮ لا توجد ملفات في البوت '
 end
 send(msg.chat_id_, msg.id_,Files)
 elseif text == "متجر الملفات" or text == 'المتجر' then
-local Get_Files, res = https.request("https://raw.githubusercontent.com/pastore0/Files_pastore/main/getfile.json")
+local Get_Files, res = https.request("https://raw.githubusercontent.com/TkSLX/Files_pastore/main/getfile.json")
 if res == 200 then
 local Get_info, res = pcall(JSON.decode,Get_Files);
 if Get_info then
@@ -2300,7 +2300,7 @@ send(msg.chat_id_,msg.id_,"⌔∮تم مسح جميع ملفات المفعله"
 elseif text and text:match("^(تعطيل ملف) (.*)(.lua)$") then
 local File_Get = {string.match(text, "^(تعطيل ملف) (.*)(.lua)$")}
 local File_Name = File_Get[2]..'.lua'
-local Get_Json, Res = https.request("https://raw.githubusercontent.com/pastore0/Files_pastore/main/Files_pastore/"..File_Name)
+local Get_Json, Res = https.request("https://raw.githubusercontent.com/TkSLX/Files_pastore/main/Files_pastore/"..File_Name)
 if Res == 200 then
 os.execute("rm -fr Files/"..File_Name)
 send(msg.chat_id_, msg.id_,"\n⌔∮الملف ← *"..File_Name.."*\n⌔∮تم تعطيله وحذفه من البوت بنجاح") 
@@ -2311,7 +2311,7 @@ end
 elseif text and text:match("^(تفعيل ملف) (.*)(.lua)$") then
 local File_Get = {string.match(text, "^(تفعيل ملف) (.*)(.lua)$")}
 local File_Name = File_Get[2]..'.lua'
-local Get_Json, Res = https.request("https://raw.githubusercontent.com/pastore0/Files_pastore/main/Files_pastore/"..File_Name)
+local Get_Json, Res = https.request("https://raw.githubusercontent.com/TkSLX/Files_pastore/main/Files_pastore/"..File_Name)
 if Res == 200 then
 local ChekAuto = io.open("Files/"..File_Name,'w+')
 ChekAuto:write(Get_Json)
@@ -2550,7 +2550,7 @@ elseif text == "تغير اسم البوت 🔄" then
 redis:setex(bot_id.."Change:Name:Bot"..msg.sender_user_id_,300,true) 
 send(msg.chat_id_, msg.id_,"⌔∮ ارسل لي الاسم الان ")  
 return false
-elseif text == ("مسح قائمه العام ??") or text == ("مسح المحظورين عام") then
+elseif text == ("مسح قائمه العام 💯") or text == ("مسح المحظورين عام") then
 redis:del(bot_id.."Removal:User:Groups")
 send(msg.chat_id_, msg.id_, "⌔∮تم مسح المحظورين عام من البوت")
 elseif text == ("مسح قائمه المطورين 🚫") then
@@ -6438,11 +6438,10 @@ return false
 elseif text == 'تغير الايدي' and Owner(msg) then 
 local List = {
 [[
-𓄼🇮🇶 𝑼𝒔𝒆𝒓𝑵𝒂𝒎𝒆 :#username 
-𓄼🇮🇶 𝑺𝒕𝒂𝒔𝒕 :#stast 
-𓄼🇮🇶 𝒊𝒅 :#id 
-𓄼🇮🇶 𝑮𝒂𝒎𝒆𝑺 :#game 
-𓄼🇮🇶 𝑴𝒔𝒈𝒔 :#msgs
+⌔∮Msgs : #msgs
+⌔∮ID : #id
+⌔∮Stast : #stast
+⌔∮UserName : #username
 ]],
 [[
 ᯓ 𝟔𝟔𝟔𖡋 #username 
@@ -6452,10 +6451,10 @@ local List = {
 ᯓ 𝟔𝟔𝟔𖡋 #game
 ]],
 [[
-➭- 𝒔𝒕𝒂𓂅 #stast 𓍯. 💕
-➮- 𝒖𝒔𝒆𝒓𓂅 #username 𓍯. 💕
-➭- 𝒎𝒔𝒈𝒆𓂅 #msgs 𓍯. 💕
-➭- 𝒊𝒅 𓂅 #id 𓍯. 💕
+☆•𝐮𝐬𝐞𝐫 : #username 𖣬  
+☆•𝐦𝐬𝐠  : #msgs 𖣬 
+☆•𝐬𝐭𝐚 : #stast 𖣬 
+☆•𝐢𝐝  : #id 𖣬
 ]],
 [[
 - 𓏬 𝐔𝐬𝐄𝐫 : #username 𓂅 .
@@ -6464,7 +6463,7 @@ local List = {
 - 𓏬 𝐈𝐃 : #id 𓂅 .
 ]],
 [[
-.𖣂 𝙪𝙨𝙚𝙧𝙣𝙖𝙢𝙚 , #username  
+.?? 𝙪𝙨𝙚𝙧𝙣𝙖𝙢𝙚 , #username  
 .𖣂 𝙨𝙩𝙖𝙨𝙩 , #stast  
 .𖣂 𝙡𝘿 , #id  
 .𖣂 𝙂𝙖𝙢𝙨 , #game 
@@ -6644,7 +6643,7 @@ elseif text and (text == "تنظيف جميع الميديا" or text == "تنظ
         end
         Delete_Message(msg.chat_id_,lk_lkid2)
     end,nil)  
-    send(msg.chat_id_, msg.id_,"⌔∮تم ازالة جميع الميديا") 
+    send(msg.chat_id_, msg.id_,"⌔∮تم ازالة 100 من وسائط 🛡") 
 elseif text and (text == "تنظيف جميع الرسائل المعدله" or text == "تنظيف الرسائل المعدلة" or text == "تنظيف الرسائل المعدله") and Admin(msg) then   
     lk_lkid = {[0]=msg.id_}
     local Message = msg.id_
@@ -6663,7 +6662,7 @@ elseif text and (text == "تنظيف جميع الرسائل المعدله" or 
         end
         Delete_Message(msg.chat_id_,lk_lkid2)
     end,nil)  
-    send(msg.chat_id_, msg.id_,'⌔∮تم ازالة جميع الرساله معدلة ') 
+    send(msg.chat_id_, msg.id_,'⌔∮تم ازالة 100 رساله معدلة 🛡') 
 elseif text == 'ايدي' and tonumber(msg.reply_to_message_id_) > 0 and not redis:get(bot_id..'Status:Lock:Id:Photo'..msg.chat_id_) then
 function Function_Status(extra, result, success)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
@@ -6935,7 +6934,7 @@ if redis:get(bot_id.."Status:Lock:Game:Group"..msg.chat_id_) then
 Num = math.random(1,20)
 redis:set(bot_id.."Status:GAMES:NUM"..msg.chat_id_,Num) 
 send(msg.chat_id_, msg.id_,"\n⌔∮اهلا بك عزيزي في لعبة التخمين :\nٴ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n".."⌔∮ملاحظه لديك { 3 } محاولات فقط فكر قبل ارسال تخمينك \n\n".."⌔∮سيتم تخمين عدد ما بين ال {1 و 20} اذا تعتقد انك تستطيع الفوز جرب واللعب الان ؟ ")
-redis:setex(bot_id.."Status:GAME:TkMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 100, true)  
+redis:setex(bot_id.."Status:GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 100, true)  
 return false  
 end
 elseif text == "محيبس" or text == "بات" then
@@ -7638,7 +7637,7 @@ if b.first_name_ == false then
 send(msg.chat_id_, msg.id_,"⌔∮ حساب المنشئ محذوف")
 return false  
 end
-local UserName = (b.username_ or "pastore0")
+local UserName = (b.username_ or "TkSLX")
 send(msg.chat_id_, msg.id_,"⌔∮منشئ المجموعه ~ ["..b.first_name_.."](T.me/"..UserName..")")  
 end,nil)   
 end
@@ -7657,7 +7656,7 @@ if b.first_name_ == false then
 send(msg.chat_id_, msg.id_,"⌔∮حساب المنشئ محذوف")
 return false  
 end
-local UserName = (b.username_ or "pastore0")
+local UserName = (b.username_ or "TkSLX")
 send(msg.chat_id_, msg.id_,"⌔∮تم ترقية منشئ المجموعه ← ["..b.first_name_.."](T.me/"..UserName..")")  
 redis:sadd(bot_id.."President:User"..msg.chat_id_,b.id_)
 end,nil)   
