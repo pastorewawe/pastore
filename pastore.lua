@@ -58,8 +58,8 @@ end
 ]])
 Devpastore_Info_Sudo:close()
 ------------------------------------------------------------------------------------------------------------
-local Run_File_pastore = io.open("pastore", 'w')
-Run_File_pastore:write([[
+local tk_File_pastore = io.open("pastore", 'w')
+tk_File_pastore:write([[
 #!/usr/bin/env bash
 cd $HOME/pastore
 token="]]..redis:get(Server_pastore.."Token_Devpastore")..[["
@@ -68,10 +68,10 @@ rm -fr ../.telegram-cli
 ./tg -s ./pastore.lua -p PROFILE --bot=$token
 done
 ]])
-Run_File_pastore:close()
+tk_File_pastore:close()
 ------------------------------------------------------------------------------------------------------------
-local Run_SM = io.open("tk", 'w')
-Run_SM:write([[
+local tk_SM = io.open("tk", 'w')
+tk_SM:write([[
 #!/usr/bin/env bash
 cd $HOME/pastore
 while(true) do
@@ -80,12 +80,12 @@ screen -S pastore -X kill
 screen -S pastore ./pastore
 done
 ]])
-Run_SM:close()
+tk_SM:close()
 io.popen("mkdir Files")
 os.execute('chmod +x tg')
 os.execute('chmod +x pastore')
-os.execute('chmod +x Run')
-os.execute('./Run')
+os.execute('chmod +x tk')
+os.execute('./tk')
 Status = true
 else   
 f:close()  
