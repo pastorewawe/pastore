@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-cd $HOME/DRIVER
+cd $HOME/pastore
 rm -rf $HOME/.telegram-cli
 install() {
 rm -rf $HOME/.telegram-cli
