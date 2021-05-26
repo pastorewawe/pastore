@@ -245,7 +245,7 @@ end
 ------------------------------------------------------------------------------------------------------------
 function Get_Rank(user_id,chat_id)
 if tonumber(user_id) == tonumber(Dev_Vip_User) then  
-Status = "المطور السورس" 
+Status = "مطور السورس" 
 elseif Dev_pastore_User(user_id) == true then
 Status = "المطور الاساسي"  
 elseif tonumber(user_id) == tonumber(bot_id) then  
